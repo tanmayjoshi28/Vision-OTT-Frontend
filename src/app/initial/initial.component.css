@@ -1,0 +1,39 @@
+.submit {
+    background-color: #08d;
+    border-radius: 12px;
+    border: 0;
+    color: #eee; 
+    font-size: 18px;
+    height: 40px;
+    width: 70px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    outline: 0;
+}
+
+.box {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+  }
+  
+   .row {
+    border: 1px dotted grey;
+  }
+  
+  /* .row.header {
+    flex: 0 1 auto;
+    The above is shorthand for:
+    flex-grow: 0,
+    flex-shrink: 1,
+    flex-basis: auto
+   
+  }*/
+  
+  /* .row.header {
+    flex: 1 1 auto;
+  } */
+  
+  /* .box .row.footer {
+    flex: 0 1 40px;
+  } */

@@ -1,0 +1,32 @@
+
+<div class='container'>
+	<div class="form">
+		<div class="title">Welcome</div>
+		<div class="subtitle">Let's get you logged in</div>
+		<div class="input-container ic1">
+			<input class="input" type="email" [(ngModel)]='email' placeholder="Enter Email" />
+		</div>
+		<div class="input-container ic2">
+			<input class="input" type="password" [(ngModel)]='password' placeholder="Password" />
+		</div>
+		<p style="text-align: center; color:white;">{{message}}</p>
+		<button class="submit" (click)="logInUser()">Submit</button>
+		<h5 style="color: white; text-align: center;">Not Having an Account ? 
+			<a style="color: white; cursor: pointer;" (click)="navigateToRegister()">
+				Sign up here
+			</a>
+		</h5>
+	</div>
+</div>
+
+<!-- <p>Login</p>
+<div class="i-am-centered">
+    <div class="row">
+        <input type="email" [(ngModel)]='email' placeholder="Enter Email">
+    </div>
+    <div class="row">
+        <input type="password" [(ngModel)]='password' placeholder="Password">
+    </div>
+    <button (click)="logInUser()">Login</button>    
+    <p>{{message}}</p>
+</div> -->
