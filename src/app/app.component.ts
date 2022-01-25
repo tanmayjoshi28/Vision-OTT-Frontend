@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../app/models/user';
 import { Router } from '@angular/router';
+import { UserService } from './services/auth/user.service';
 
 @Component({
 	selector: 'app-root',
@@ -10,5 +10,6 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 	constructor(private router: Router) {}
 	ngOnInit(): void {
+		
 	}
 }
