@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Video } from 'src/app/models/video/video';
+import { User } from '../../models/user/user';
+import { UserService } from '../../services/auth/user.service';
+import { VideoService } from '../../services/videoContent/video.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -6,10 +11,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-
-  constructor() { }
-
+  currentUserId:string|null = '';
+	currentUser:User = {id:-1, name:'', email:'', dob:'', bookmarks:[] ,password:''}
+  yourVideos:Video[] = [];
+  bookMarked:Video[]=[];
+  constructor(private route: Router, private activeRoute:ActivatedRoute ,private videoServices: VideoService, private userServices: UserService) { }
   ngOnInit(): void {
+    this.currentUserId = this.activeRoute.snapshot.paramMap.get('id');
+    this.yourVideos = this.videoServices.getYourVideos(!this.currentUserId ? '-1' : this.currentUserId)
+    this.currentUser = this.userServices.getUserById(!this.currentUserId ? '-1' : this.currentUserId);
+    this.bookMarked = this.userServices.getBookMarkedVideos()
+  }
+  navigateToHome(){
+    this.route.navigateByUrl('/');
+  }
+  navigateToAddVideo(){
+    this.route.navigateByUrl('/add-video')
   }
 
 }

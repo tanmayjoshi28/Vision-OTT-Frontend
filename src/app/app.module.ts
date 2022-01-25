@@ -19,7 +19,7 @@ import { AddVideoComponent } from './components/add-video/add-video.component';
     InitialComponent,
     SearchPipe,
     UserProfileComponent,
-    AddVideoComponent
+    AddVideoComponent,
   ],
   imports: [
     BrowserModule,

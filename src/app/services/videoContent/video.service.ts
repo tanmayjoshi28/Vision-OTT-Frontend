@@ -26,4 +26,18 @@ export class VideoService {
 	addVideo(newVideo:Video){
 		this.allVideos.push(newVideo)
 	}
+	getYourVideos(userId:string){
+		return(
+			this.allVideos.filter(video=> video.ownerId===parseInt(userId))
+		)
+	}
+	getVideoById(videoId:string):Video{
+		for(let video of this.allVideos){
+			if(video.videoId===videoId){
+				return video;
+			}
+		}
+		throw new Error("");
+		
+	}
 }

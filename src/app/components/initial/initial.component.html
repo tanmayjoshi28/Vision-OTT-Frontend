@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #15172b;">
+<nav class="navbar navbar-expand-lg " style="background-color: #15172b;">
 	<i class="fa fa-play-circle-o navbar-brand" style="font-size:48px;color:white"></i>
-	<a class="navbar-brand">Vision</a>
-	<a class="navbar-brand" style="margin-left: 10px;">Hi there {{currentUser.name}} !</a>
+	<a class="navbar-brand noHover">Vision</a>
+	<a class="navbar-brand noHover" style="margin-left: 10px; color:bisque;">Hi there {{currentUser.name}} !</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
 		aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -9,13 +9,13 @@
 	<div class="collapse navbar-collapse" id="navbarText">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item" style="margin-left: 5%;">
-				<a class="nav-link" href="/">Home </a>
+				<a class="nav-link" (click)="navigateToHome()" >Home </a>
 			</li>
 			<li class="nav-item" style="margin-left: 5%;">
-				<a class="nav-link" href="/user/{{2}}" >Profile</a>
+				<a class="nav-link" (click)="navigateToProfile(currentUser.id)" >Profile</a>
 			</li>
 			<li class="nav-item" style="margin-left: 5%; ">
-				<a class="nav-link" href="/add-video">Add_Video</a>
+				<a class="nav-link " (click)="navigateToAddVideo()" >Add_Video</a>
 			</li>
 			<li class="nav-item" style="margin-left: 5%; width: 500px;">
 				<input class="form-control mr-sm-2" type="search" placeholder="Search" [(ngModel)]="searchInput"  >
@@ -28,14 +28,23 @@
 	<a class="nav-link navbar-brand" style="font-size:15px;" href="/login" >Logout</a>
 </nav>
 
-<div class="row" style="margin: 0px;">
+<div class="row" style="margin: 0px; justify-content: center;">
 	<div class="column" style="margin-top: 10px; margin-left: 20px; margin-right: 20px;" *ngFor="let video of allVideos | search:searchString ">
-		<div class="card" style="width: 18rem; border-radius: 20px; border-width: 3px; border-color:rgb(52,58,64) ;">
+		<div class="card" style="width: 18rem; border-radius: 20px; border-width: 3px; border-color:#15172b ;">
 			<img class="card-img-top" style="border-radius: 17px;" src="{{video.imageLink}}" alt="image">
 			<div class="card-body">
 			<h5 class="card-title">{{video.title}}</h5>
 			<p class="card-text">{{video.description}}</p>
-			<a href="{{video.embedLink}}" class="btn btn-primary" style="background-color: rgb(52,58,64); border-color: rgb(52,58,64); border-radius: 20px;">Watch !</a>
+			<div class="row">
+				<div class="col">
+					<a class="btn btn-primary " style="background-color: #15172b; border-color: #15172b;" href='{{video.embedLink}}'>Watch</a>
+				</div>
+				<div class="col" *ngIf="!currentUser.bookmarks.includes(video.videoId); else elseBlock">
+					<a class="btn btn-primary" style="background-color: #15172b; border-color: #15172b;" (click)="bookMark(video.videoId)">Bookmark</a>
+				</div>
+				<ng-template #elseBlock><a class="btn btn-primary" style="background-color: green; border-color: #15172b;" (click)="unMark(video.videoId)">Bookmarked</a></ng-template>
+			</div>
+			
 			</div>
 		</div>
 	</div>

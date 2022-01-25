@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/user/user';
 import dummyUsers
  from 'src/dummydata/dummyUsers';
+import { Video } from 'src/app/models/video/video';
+import { VideoService } from '../videoContent/video.service';
 @Injectable({
 	providedIn: 'root'
 })
 export class UserService {
 	userData: User[] = dummyUsers;
-	currentUser:User = {id:-1, name:'', email:'', dob:'', password:''}
-	constructor() { }
+	currentUser:User = {id:-1, name:'', email:'', dob:'', bookmarks:[],password:''}
+	constructor(private videoServices:VideoService) { }
 	setUsers(input: User) {
 		this.userData.push(input)
 	}
@@ -29,5 +31,27 @@ export class UserService {
 	}
 	getCurrentUser():User{
 		return this.currentUser
+	}
+	getUserById(id:string):User{
+		for(let user of this.userData){
+			if(user.id===parseInt(id)){
+				return user
+			}
+		}
+		throw(Error);
+	}
+	bookMarkVideo(videoId:string){
+		this.currentUser.bookmarks.push(videoId);
+	}
+	unMarkVideo(videoId:string){
+		this.currentUser.bookmarks = this.currentUser.bookmarks.filter(id=> id!=videoId)
+	}
+	getBookMarkedVideos():Video[]{
+		const videos:Video[]=[];
+		for(let id of this.currentUser.bookmarks){
+			let currentVideo = this.videoServices.getVideoById(id);
+			videos.push(currentVideo);
+		}
+		return videos;
 	}
 }

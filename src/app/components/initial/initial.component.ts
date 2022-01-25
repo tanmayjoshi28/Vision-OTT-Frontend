@@ -12,7 +12,7 @@ import { User } from 'src/app/models/user/user';
 })
 export class InitialComponent implements OnInit {
 	allVideos:Video[] = []
-	currentUser:User = {id:-1, name:'', email:'', dob:'', password:''}
+	currentUser:User = {id:-1, name:'', email:'', dob:'', bookmarks:[],password:''}
 	searchInput = '';
 	searchString= '';
 
@@ -24,8 +24,23 @@ export class InitialComponent implements OnInit {
 	navigateToLogin() {
 		this.route.navigateByUrl('/login');
 	}
+	navigateToHome(){
+		this.route.navigateByUrl('/');
+	}
+	navigateToProfile(id:number){
+		this.route.navigateByUrl(`/user/${id}`)
+	}
+	navigateToAddVideo(){
+		this.route.navigateByUrl('/add-video')
+	}
 	setSearchVariable(){
 		this.searchString = this.searchInput;
 	}
-
+	bookMark(videoId:string){
+		this.userServices.bookMarkVideo(videoId);
+		this.currentUser = this.userServices.getCurrentUser();
+	}
+	unMark(videoId:string){
+		this.userServices.unMarkVideo(videoId)
+	}
 }

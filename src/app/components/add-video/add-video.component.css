@@ -10,17 +10,26 @@
 .container {
   display: flex;
   flex-flow: column;
-  height: 80%;
+  height: 100%;
   align-items: center;
 }
-
+.noHover{
+  pointer-events: none;
+}
+.nav-link:hover{
+  cursor: pointer;
+  color: white;
+}
+a {
+  color: white;
+}
 .form {
-  background-color: rgb(52,58,64);
+  background-color: #15172b;
   border-radius: 20px;
   box-sizing: border-box;
   height: 800px;
   padding: 20px;
-  width: 400px;
+  width: 800px;
 }
 .title {
   color: #eee;
@@ -53,11 +62,11 @@
 }
 
 .input {
-  background-color: white;
+  background-color: #303245;
   border-radius: 12px;
   border: 0;
   box-sizing: border-box;
-  color: black;
+  color: #eee;;
   font-size: 18px;
   height: 100%;
   outline: 0;
