@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #15172b;">
+	<i class="fa fa-play-circle-o navbar-brand" style="font-size:48px;color:white"></i>
+	<a class="navbar-brand">Vision</a>
+	<a class="navbar-brand" style="margin-left: 10px;">Hi there {{currentUser.name}} !</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+		aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarText">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item" style="margin-left: 5%;">
+				<a class="nav-link" href="/">Home </a>
+			</li>
+			<li class="nav-item" style="margin-left: 5%;">
+				<a class="nav-link" href="#" >Profile</a>
+			</li>
+			<li class="nav-item" style="margin-left: 5%; ">
+				<a data-toggle="modal" data-target="#myModal" class="nav-link" style="cursor: pointer;" >Add_Video</a>
+			</li>
+		</ul>
+	</div>
+	<a class="nav-link navbar-brand" style="font-size:15px;" href="/login" >Logout</a>
+</nav>
+<div class='container'>
+    <div class="form">
+        <div class="title">Add Video</div>
+		<div class="subtitle">(Video id refers to your youtube video id)</div>
+        <div class="input-container ic2">
+            <input class="input" type="text"  placeholder="Title" [(ngModel)]='title'/>
+        </div>
+        <div class="input-container ic2" style="height: 200px;">
+            <textarea placeholder="Description" class="input" [(ngModel)]='description' style="resize: none;" rows="3"></textarea>
+        </div>
+        <div class="input-container ic2">
+            <input class="input" type="email" [(ngModel)]='videoId'  placeholder="Video Id" />
+        </div>
+        <div class="input-container ic2">
+            <select 
+                name="categories" 
+                id="categories" 
+                class="input"
+                [(ngModel)]="selectedOption"
+            >
+                <option *ngFor="let category of categories">{{ category.title }}</option>
+            </select>
+        </div>
+        <p style="color: white;"></p>
+        <button (click)="addNewVideo()" class="save" style="text-align: center;">Submit</button>
+    </div>
+</div>

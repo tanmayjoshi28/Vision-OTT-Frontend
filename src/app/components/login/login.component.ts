@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/auth/user.service';
 
 @Component({
     selector: 'app-login',
@@ -18,10 +18,10 @@ export class LoginComponent implements OnInit {
     logInUser(){
         const isAuthenticated = this.userServices.authenticate(this.email,this.password);
         if(isAuthenticated){
-            this.message = 'Logged In';
+            this.router.navigateByUrl('/')
         }
         else{
-            this.message = 'Check Again'
+            this.message = 'Check credentials'
         }
     }
     navigateToRegister(){

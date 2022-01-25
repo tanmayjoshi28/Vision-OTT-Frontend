@@ -10,6 +10,5 @@ export class User {
         this.dob = dob,
         this.email = email,
         this.password = password
-    }
-    
+    } 
 }

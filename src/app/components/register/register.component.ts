@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../models/user';
-import { UserService } from '../services/user.service';
+import { User } from '../../models/user/user';
+import { UserService } from '../../services/auth/user.service';
 
 @Component({
 	selector: 'app-register',
@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
 	email = '';
 	password = '';
 	checkPassword = '';
-	message =''
+	message =' '
 	constructor(private route: Router, private userServices:UserService) { }
 	ngOnInit(): void {
 
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
 			return;
 		}
 		if(this.password!=this.checkPassword){
-			this.message = 'Passwords dont match';
+			this.message = 'Passwords do not match';
 			return;
 		}
 
