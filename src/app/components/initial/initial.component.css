@@ -13,7 +13,17 @@
   flex-flow: column;
   height: 100%;
 }
-
+.noHover{
+  pointer-events: none;
+}
+.nav-link:hover{
+  cursor: pointer;
+  color: white;
+}
+.btn:hover{
+  cursor:pointer;
+  color:white
+}
 .container{
   display: flex;
   flex-flow: column;
@@ -21,7 +31,9 @@
   justify-content: center;
   align-items: center;
 }
-
+a {
+  color: white;
+}
 .form {
 background-color: #15172b;
 border-radius: 20px;

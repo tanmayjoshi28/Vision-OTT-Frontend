@@ -19,7 +19,7 @@ export class AddVideoComponent implements OnInit {
 		{ id :'SPORTS', title:'SPORTS'},
 		{ id:'OTHERS', title:'OTHERS'}
 	]
-	currentUser:User = {id:-1, name:'', email:'', dob:'', password:''}
+	currentUser:User = {id:-1, name:'', email:'', dob:'', bookmarks:[],password:''}
 	title = '';
 	description = '';
 	videoId = '';
@@ -36,6 +36,15 @@ export class AddVideoComponent implements OnInit {
 		const newVideoObj = new Video(this.currentUser.id, this.selectedOption, this.title, this.description, this.videoId, videoLink, imageLink);
 		this.videoServices.addVideo(newVideoObj)
 		this.route.navigateByUrl('/')
+	}
+	navigateToHome(){
+		this.route.navigateByUrl('/');
+	}
+	navigateToProfile(id:number){
+	this.route.navigateByUrl(`/user/${id}`)
+	}
+	navigateToAddVideo(){
+	this.route.navigateByUrl('/add-video')
 	}
 
 }

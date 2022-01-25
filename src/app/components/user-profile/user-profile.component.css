@@ -21,7 +21,16 @@
     justify-content: center;
     align-items: center;
   }
-  
+  a {
+    color: white;
+  }
+  .noHover{
+    pointer-events: none;
+  }
+  .nav-link:hover{
+    cursor: pointer;
+    color: white;
+  }
   .form {
   background-color: #15172b;
   border-radius: 20px;

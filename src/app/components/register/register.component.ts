@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
 			return;
 		}
 
-		const newUser = new User(id, this.name, this.dob,this.email, this.password);
+		const newUser = new User(id, this.name, this.dob,this.email, [] ,this.password);
 		this.userServices.setUsers(newUser);
 		this.route.navigateByUrl('/login');
 	}
