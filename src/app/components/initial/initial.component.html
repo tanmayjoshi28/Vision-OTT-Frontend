@@ -37,7 +37,7 @@
 			<p class="card-text">{{video.description}}</p>
 			<div class="row">
 				<div class="col">
-					<a class="btn btn-primary " style="background-color: #15172b; border-color: #15172b;" href='{{video.embedLink}}'>Watch</a>
+					<a class="btn btn-primary " style="background-color: #15172b; border-color: #15172b;" (click)="navigateToWatching(video.videoId)">Watch</a>
 				</div>
 				<div class="col" *ngIf="!currentUser.bookmarks.includes(video.videoId); else elseBlock">
 					<a class="btn btn-primary" style="background-color: #15172b; border-color: #15172b;" (click)="bookMark(video.videoId)">Bookmark</a>

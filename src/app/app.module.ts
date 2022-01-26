@@ -10,6 +10,8 @@ import { InitialComponent } from './components/initial/initial.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AddVideoComponent } from './components/add-video/add-video.component';
+import { EditVideoComponent } from './components/edit-video/edit-video.component';
+import { WatchVideoComponent } from './components/watch-video/watch-video.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { AddVideoComponent } from './components/add-video/add-video.component';
     SearchPipe,
     UserProfileComponent,
     AddVideoComponent,
+    EditVideoComponent,
+    WatchVideoComponent,
   ],
   imports: [
     BrowserModule,
