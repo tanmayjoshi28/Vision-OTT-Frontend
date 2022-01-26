@@ -23,7 +23,7 @@
 </nav>
 <div class='container'>
     <div class="form">
-        <div class="title">Add Video</div>
+        <div class="title">Edit your Video</div>
 		<div class="subtitle">(Video id refers to your youtube video id)</div>
         <div class="input-container ic2">
             <input class="input" type="text"  placeholder="Title" [(ngModel)]='title'/>
@@ -32,7 +32,7 @@
             <textarea placeholder="Description" class="input" [(ngModel)]='description' style="resize: none;" rows="3"></textarea>
         </div>
         <div class="input-container ic2">
-            <input class="input" type="email" [(ngModel)]='videoId'  placeholder="Video Id" />
+            <input class="input" type="text" style="cursor: not-allowed;" [(ngModel)]='videoId'  placeholder="Video Id" readonly/>
         </div>
         <div class="input-container ic2">
             <select 
@@ -45,6 +45,7 @@
             </select>
         </div>
         <p style="color: white; text-align: center;">{{message}}</p>
-        <button (click)="addNewVideo()" class="save" style="text-align: center;">Submit</button>
+        <button (click)="editCurrentVideo()" class="save" style="text-align: center;">Submit</button>
     </div>
 </div>
+

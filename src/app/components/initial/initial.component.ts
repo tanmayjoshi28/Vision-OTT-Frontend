@@ -33,6 +33,9 @@ export class InitialComponent implements OnInit {
 	navigateToAddVideo(){
 		this.route.navigateByUrl('/add-video')
 	}
+	navigateToWatching(videoId:string){
+		this.route.navigateByUrl(`/watching/${videoId}`)
+	}
 	setSearchVariable(){
 		this.searchString = this.searchInput;
 	}

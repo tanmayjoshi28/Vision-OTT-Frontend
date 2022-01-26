@@ -40,4 +40,17 @@ export class VideoService {
 		throw new Error("");
 		
 	}
+	editVideo(videoId:string, title:string, description:string, category:string){
+		for(let video of this.allVideos){
+			if(videoId === video.videoId){
+				video.title = title;
+				video.description = description;
+				video.category = category
+			}
+		}
+	}
+	deleteVideo(videoId:string){
+		this.allVideos = this.allVideos.filter(video=>video.videoId != videoId)
+	}
+
 }

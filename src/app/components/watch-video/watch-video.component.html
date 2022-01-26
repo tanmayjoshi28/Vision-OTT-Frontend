@@ -1,0 +1,18 @@
+<div class="box" style="background-color:#15172b;">
+    <div class="row" style=" margin: 0px; padding-left: 100px; padding-right: 100px; margin-top: 10%;">
+        <div class="col" style="margin-top:10%;" >
+            <h3 style="color: wheat;;">
+                Title : <span style="color: white; font-family: cursive;">{{currentVideo.title}}</span>
+            </h3>
+            <h3 style="color: wheat;;">
+                Description : <span style="color: white; font-family: cursive;">{{currentVideo.description}}</span>
+            </h3>
+            <h3 style="color: wheat;;">
+                Category : <span style="color: white; font-family: cursive;">{{currentVideo.category}}</span>
+            </h3>
+        </div>
+        <div>
+            <iframe width="1000" height="500" [src]='safeUrl' frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>

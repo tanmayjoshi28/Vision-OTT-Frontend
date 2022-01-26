@@ -31,7 +31,11 @@
 			<div class="card-body">
 			<h5 class="card-title">{{video.title}}</h5>
 			<p class="card-text">{{video.description}}</p>
-			<a href="{{video.embedLink}}" class="btn btn-primary" style="background-color: #15172b; border-color: #15172b; border-radius: 20px; border-width: 1px;">Watch !</a>
+			<div class="row">
+				<a (click)="navigateToWatching(video.videoId)" class="btn btn-primary col" style="background-color: #15172b; border-color: #15172b; border-radius: 20px; border-width: 1px;">Watch !</a>
+				<a (click)="navigateToEditVideo(video.videoId)" class="btn btn-primary col" style="background-color:bisque; border-color: #15172b; color: black;  border-radius: 20px; border-width: 1px;">Edit</a>
+				<a (click)="deleteVideo(video.videoId)" class="btn btn-primary col" style="background-color:rgb(196, 51, 51); border-color: #15172b;  border-radius: 20px; border-width: 1px;">Delete</a>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -47,7 +51,7 @@
 			<div class="card-body">
 			<h5 class="card-title">{{video.title}}</h5>
 			<p class="card-text">{{video.description}}</p>
-			<a href="{{video.embedLink}}" class="btn btn-primary" style="background-color: #15172b; border-color: #15172b; border-radius: 20px; border-width: 1px;">Watch !</a>
+			<a (click)="navigateToWatching(video.videoId)" class="btn btn-primary" style="background-color: #15172b; border-color: #15172b; border-radius: 20px; border-width: 1px;">Watch !</a>
 			</div>
 		</div>
 	</div>

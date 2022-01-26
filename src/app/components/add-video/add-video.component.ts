@@ -24,13 +24,17 @@ export class AddVideoComponent implements OnInit {
 	description = '';
 	videoId = '';
 	selectedOption = '-'
+	message = ''
 	constructor(private route:Router,private videoServices:VideoService, private userServices :UserService) { }
 
 	ngOnInit(): void {
 		this.currentUser = this.userServices.getCurrentUser();
 	}
 	addNewVideo() {
-		const size = this.videoServices.getAllVideosSize();
+		if(this.title==='' || this.description==='' || this.selectedOption===''){
+			this.message = 'Incomplete fields'
+			return
+		}
 		const videoLink = this.videoServices.getEmbedLink(this.videoId);
 		const imageLink = this.videoServices.getThumbnail(this.videoId);
 		const newVideoObj = new Video(this.currentUser.id, this.selectedOption, this.title, this.description, this.videoId, videoLink, imageLink);

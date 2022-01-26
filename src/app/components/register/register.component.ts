@@ -26,11 +26,15 @@ export class RegisterComponent implements OnInit {
 			this.message = 'Fields Incomplete';
 			return;
 		}
+		if(this.password.length<8){
+			this.message = 'Min Password Length is 8';
+			return;
+		}
 		if(this.password!=this.checkPassword){
 			this.message = 'Passwords do not match';
 			return;
 		}
-
+		
 		const newUser = new User(id, this.name, this.dob,this.email, [] ,this.password);
 		this.userServices.setUsers(newUser);
 		this.route.navigateByUrl('/login');
