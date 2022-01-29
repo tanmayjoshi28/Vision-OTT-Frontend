@@ -2,8 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3
 
-## First Step
-Download node.js and install angular
+## Pre-install
+node.js and angular
 
 ## Development server
 Navigate to project directory from your shell
