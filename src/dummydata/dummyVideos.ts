@@ -4,7 +4,7 @@ export default [
         category:'INFORMATION',
         title:'Test 1',
         description:'Description 1',
-        videoId:'aznOL753eiQ',
+        videoId:'IwJzsE8CvzQ',
         embedLink:'https://www.youtube.com/embed/IwJzsE8CvzQ',
         imageLink: 'https://img.youtube.com/vi/IwJzsE8CvzQ/0.jpg'
     },

@@ -54,4 +54,13 @@ export class UserService {
 		}
 		return videos;
 	}
+	checkDuplicate(email:string):boolean{
+		for(let user of this.userData){
+			console.log(user.email)
+			if(user.email===email){
+				return true;
+			}
+		}
+		return false;
+	}
 }

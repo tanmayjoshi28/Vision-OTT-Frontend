@@ -34,6 +34,11 @@ export class RegisterComponent implements OnInit {
 			this.message = 'Passwords do not match';
 			return;
 		}
+		const alreadPresent = this.userServices.checkDuplicate(this.email);
+		if(alreadPresent){
+			this.message = 'Email Already Present';
+			return;
+		}
 		
 		const newUser = new User(id, this.name, this.dob,this.email, [] ,this.password);
 		this.userServices.setUsers(newUser);

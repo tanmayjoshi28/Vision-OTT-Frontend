@@ -52,5 +52,13 @@ export class VideoService {
 	deleteVideo(videoId:string){
 		this.allVideos = this.allVideos.filter(video=>video.videoId != videoId)
 	}
+	checkVideo(videoId:string):boolean{
+		for(let video of this.allVideos){
+			if(video.videoId===videoId){
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

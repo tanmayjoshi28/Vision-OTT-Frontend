@@ -33,7 +33,12 @@ export class AddVideoComponent implements OnInit {
 	addNewVideo() {
 		if(this.title==='' || this.description==='' || this.selectedOption===''){
 			this.message = 'Incomplete fields'
-			return
+			return;
+		}
+		if(this.videoServices.checkVideo(this.videoId)){
+			this.message = 'Video with this ID already present';
+			console.log("here")
+			return;
 		}
 		const videoLink = this.videoServices.getEmbedLink(this.videoId);
 		const imageLink = this.videoServices.getThumbnail(this.videoId);
