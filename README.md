@@ -1,11 +1,11 @@
 # AngularDemo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
+Download node.js and install angular
 
 ## Development server
-
-First `run npm install`
-
+Navigate to project directory from your shell
+Run `npm install` to install dependencies
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
