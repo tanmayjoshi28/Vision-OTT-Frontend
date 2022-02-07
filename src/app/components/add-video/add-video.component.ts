@@ -19,7 +19,7 @@ export class AddVideoComponent implements OnInit {
 		{ id :'SPORTS', title:'SPORTS'},
 		{ id:'OTHERS', title:'OTHERS'}
 	]
-	currentUser:User = {id:-1, name:'', email:'', dob:'', bookmarks:[],password:''}
+	currentUser:User = {id:-1, username:'', email:'', dob:'', bookmarks:[],password:''}
 	title = '';
 	description = '';
 	videoId = '';
@@ -30,21 +30,29 @@ export class AddVideoComponent implements OnInit {
 	ngOnInit(): void {
 		this.currentUser = this.userServices.getCurrentUser();
 	}
-	addNewVideo() {
-		if(this.title==='' || this.description==='' || this.selectedOption===''){
-			this.message = 'Incomplete fields'
-			return;
-		}
-		if(this.videoServices.checkVideo(this.videoId)){
-			this.message = 'Video with this ID already present';
-			console.log("here")
-			return;
-		}
+	async addNewVideo() {
+		// if(this.title==='' || this.description==='' || this.selectedOption===''){
+		// 	this.message = 'Incomplete fields'
+		// 	return;
+		// }
+		// if(this.videoServices.checkVideo(this.videoId)){
+		// 	this.message = 'Video with this ID already present';
+		// 	console.log("here")
+		// 	return;
+		// }
 		const videoLink = this.videoServices.getEmbedLink(this.videoId);
 		const imageLink = this.videoServices.getThumbnail(this.videoId);
 		const newVideoObj = new Video(this.currentUser.id, this.selectedOption, this.title, this.description, this.videoId, videoLink, imageLink);
-		this.videoServices.addVideo(newVideoObj)
-		this.route.navigateByUrl('/')
+		(await this.videoServices.addVideo(newVideoObj))
+			.subscribe({
+				next: (v)=> {
+					this.videoServices.allVideos.push(newVideoObj);
+					this.navigateToHome();
+				},
+				error: (e) => console.error(e),
+				complete: () => console.info('ADDED') 
+			})
+		
 	}
 	navigateToHome(){
 		this.route.navigateByUrl('/');

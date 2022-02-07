@@ -12,7 +12,7 @@ import { VideoService } from '../../services/videoContent/video.service';
 })
 export class UserProfileComponent implements OnInit {
 	currentUserId: string | null = '';
-	currentUser: User = { id: -1, name: '', email: '', dob: '', bookmarks: [], password: '' }
+	currentUser: User = { id: -1, username: '', email: '', dob: '', bookmarks: [], password: '' }
 	yourVideos: Video[] = [];
 	bookMarked: Video[] = [];
 	constructor(private route: Router, private activeRoute: ActivatedRoute, private videoServices: VideoService, private userServices: UserService) { }
@@ -35,8 +35,12 @@ export class UserProfileComponent implements OnInit {
 		this.route.navigateByUrl(`/watching/${videoId}`)
 	}
 	deleteVideo(videoId: string) {
-		this.videoServices.deleteVideo(videoId);
-		this.yourVideos = this.videoServices.getYourVideos(!this.currentUserId ? '-1' : this.currentUserId)
+		this.videoServices.deleteVideo(videoId)
+			.then(()=>{
+				this.yourVideos = this.yourVideos.filter(video=>video.videoId!=videoId)
+			})
+			.catch((err)=>{
+				console.log(err);
+			})
 	}
-
 }

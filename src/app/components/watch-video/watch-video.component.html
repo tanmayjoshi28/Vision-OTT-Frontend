@@ -12,7 +12,7 @@
             </h3>
         </div>
         <div>
-            <iframe width="1000" height="500" [src]='safeUrl' frameborder="0" allowfullscreen></iframe>
+            <iframe width="1000" height="500" [src]="currentVideo.embedLink | urlTransform" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 </div>

@@ -4,7 +4,6 @@ import { User } from 'src/app/models/user/user';
 import { Video } from 'src/app/models/video/video';
 import { UserService } from 'src/app/services/auth/user.service';
 import { VideoService } from 'src/app/services/videoContent/video.service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-edit-video',
@@ -29,7 +28,7 @@ export class EditVideoComponent implements OnInit {
 		{ id :'SPORTS', title:'SPORTS'},
 		{ id:'OTHERS', title:'OTHERS'}
 	]
-	currentUser:User = {id:-1, name:'', email:'', dob:'', bookmarks:[],password:''}
+	currentUser:User = {id:-1, username:'', email:'', dob:'', bookmarks:[],password:''}
 	title = '';
 	description = '';
 	videoId = '';
@@ -40,26 +39,38 @@ export class EditVideoComponent implements OnInit {
 		private activeRoute: ActivatedRoute,
 		private videoServices: VideoService, 
 		private userServices: UserService, 
-		private _sanitizer: DomSanitizer
 	) { }
 
-	ngOnInit(): void {
+	async ngOnInit(): Promise<void> {
 		const videoId = this.activeRoute.snapshot.paramMap.get('videoId');
-		this.currentVideo = this.videoServices.getVideoById(!videoId? '': videoId);
-		this.currentUser = this.userServices.getCurrentUser();
-		this.title = this.currentVideo.title;
-		this.description = this.currentVideo.description;
-		this.videoId = this.currentVideo.videoId;
-
+		(await this.videoServices.getVideoById(!videoId ? '' : videoId))
+			.subscribe({
+				next:(video)=>{
+					this.currentVideo = video;
+					this.currentUser = this.userServices.getCurrentUser();
+					this.title = this.currentVideo.title;
+					this.description = this.currentVideo.description;
+					this.videoId = this.currentVideo.videoId;
+				},
+				error:(err)=>{
+					console.log(err);
+				},
+			})
 	}
 	
-	editCurrentVideo() {
+	async editCurrentVideo() {
 		if(this.title==='' || this.description==='' || this.selectedOption===''){
 			this.message = 'Incomplete fields'
 			return;
 		}
-		this.videoServices.editVideo(this.videoId, this.title, this.description, this.selectedOption)
-		this.route.navigateByUrl('/')
+		try{
+			this.videoServices.editVideo(this.videoId, this.title, this.description, this.selectedOption).then(()=>this.navigateToHome())
+			
+		}
+		catch(err){
+			console.log(err)
+		}
+	
 	}
 	navigateToHome(){
 		this.route.navigateByUrl('/');

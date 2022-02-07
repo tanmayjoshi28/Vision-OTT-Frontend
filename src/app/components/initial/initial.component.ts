@@ -12,13 +12,13 @@ import { User } from 'src/app/models/user/user';
 })
 export class InitialComponent implements OnInit {
 	allVideos:Video[] = []
-	currentUser:User = {id:-1, name:'', email:'', dob:'', bookmarks:[],password:''}
+	currentUser:User = {id:-1, username:'', email:'', dob:'', bookmarks:[],password:''}
 	searchInput = '';
 	searchString= '';
 
 	constructor(private route: Router, private videoServices: VideoService, private userServices: UserService) { }
-	ngOnInit(): void {
-		this.allVideos = this.videoServices.getAllVideos();
+	async ngOnInit(){
+		this.allVideos = this.videoServices.allVideos;
 		this.currentUser = this.userServices.getCurrentUser();
 	}
 	navigateToLogin() {

@@ -4,12 +4,13 @@ import dummyUsers
  from 'src/dummydata/dummyUsers';
 import { Video } from 'src/app/models/video/video';
 import { VideoService } from '../videoContent/video.service';
+
 @Injectable({
 	providedIn: 'root'
 })
 export class UserService {
 	userData: User[] = dummyUsers;
-	currentUser:User = {id:-1, name:'', email:'', dob:'', bookmarks:[],password:''}
+	currentUser:User = {id:-1, username:'', email:'', dob:'', bookmarks:[], password:''}
 	constructor(private videoServices:VideoService) { }
 	setUsers(input: User) {
 		this.userData.push(input)
@@ -47,12 +48,7 @@ export class UserService {
 		this.currentUser.bookmarks = this.currentUser.bookmarks.filter(id=> id!=videoId)
 	}
 	getBookMarkedVideos():Video[]{
-		const videos:Video[]=[];
-		for(let id of this.currentUser.bookmarks){
-			let currentVideo = this.videoServices.getVideoById(id);
-			videos.push(currentVideo);
-		}
-		return videos;
+		return this.videoServices.allVideos;
 	}
 	checkDuplicate(email:string):boolean{
 		for(let user of this.userData){

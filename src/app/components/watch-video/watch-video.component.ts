@@ -28,9 +28,17 @@ export class WatchVideoComponent implements OnInit {
 		private _sanitizer: DomSanitizer
 	) { }
 
-	ngOnInit(): void {
+	async ngOnInit(): Promise<void> {
 		const videoId = this.activeRoute.snapshot.paramMap.get('videoId');
-		this.currentVideo = this.videoServices.getVideoById(!videoId ? '' : videoId);
+		(await this.videoServices.getVideoById(!videoId ? '' : videoId))
+			.subscribe({
+				next:(video)=>{
+					this.currentVideo = video;
+				},
+				error:(err)=>{
+					console.log(err);
+				},
+			})
 		this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(this.currentVideo.embedLink);
 	}
 
