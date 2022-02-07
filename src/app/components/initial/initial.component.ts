@@ -44,7 +44,6 @@ export class InitialComponent implements OnInit {
 	}
 	bookMark(videoId:string){
 		this.userServices.bookMarkVideo(videoId);
-		this.currentUser = this.userServices.getCurrentUser();
 	}
 	unMark(videoId:string){
 		this.userServices.unMarkVideo(videoId)

@@ -10,17 +10,24 @@ import { VideoService } from '../../services/videoContent/video.service';
 	templateUrl: './user-profile.component.html',
 	styleUrls: ['./user-profile.component.css']
 })
+
 export class UserProfileComponent implements OnInit {
 	currentUserId: string | null = '';
 	currentUser: User = { id: -1, username: '', email: '', dob: '', bookmarks: [], password: '' }
 	yourVideos: Video[] = [];
 	bookMarked: Video[] = [];
 	constructor(private route: Router, private activeRoute: ActivatedRoute, private videoServices: VideoService, private userServices: UserService) { }
-	ngOnInit(): void {
+	async ngOnInit(): Promise<void> {
 		this.currentUserId = this.activeRoute.snapshot.paramMap.get('id');
 		this.yourVideos = this.videoServices.getYourVideos(!this.currentUserId ? '-1' : this.currentUserId)
-		this.currentUser = this.userServices.getUserById(!this.currentUserId ? '-1' : this.currentUserId);
-		this.bookMarked = this.userServices.getBookMarkedVideos()
+		this.currentUser = this.userServices.currentUser;
+		for(let videoId of this.currentUser.bookmarks){
+			(await this.videoServices.getVideoById(videoId))
+				.subscribe({
+					next:(video)=>this.bookMarked.push(video),
+					error:(err)=>console.log(err)
+				})
+		}
 	}
 	navigateToHome() {
 		this.route.navigateByUrl('/');

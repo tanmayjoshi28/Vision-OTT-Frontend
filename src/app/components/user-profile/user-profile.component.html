@@ -24,35 +24,42 @@
 <h3 style="text-align: center; margin: 20px;">
 	Videos by {{currentUser.username}}
 </h3>
-<div class="row" style="margin: 0px; justify-content: center;">
-	<div class="column" style="margin-top: 10px; margin-left: 20px; margin-right: 20px;" *ngFor="let video of yourVideos ">
-		<div class="card" style="width: 18rem; border-radius: 20px; border-width: 3px; border-color:#15172b ;">
-			<img class="card-img-top" style="border-radius: 17px;" src="{{video.imageLink}}" alt="image">
-			<div class="card-body">
-			<h5 class="card-title">{{video.title}}</h5>
-			<p class="card-text">{{video.description}}</p>
-			<div class="row">
-				<a (click)="navigateToWatching(video.videoId)" class="btn btn-primary col" style="background-color: #15172b; border-color: #15172b; border-radius: 20px; border-width: 1px;">Watch !</a>
-				<a (click)="navigateToEditVideo(video.videoId)" class="btn btn-primary col" style="background-color:bisque; border-color: #15172b; color: black;  border-radius: 20px; border-width: 1px;">Edit</a>
-				<a (click)="deleteVideo(video.videoId)" class="btn btn-primary col" style="background-color:rgb(196, 51, 51); border-color: #15172b;  border-radius: 20px; border-width: 1px;">Delete</a>
-			</div>
+<div >
+	<div class="row" *ngIf=" yourVideos.length>0; else elseBlock" style="margin: 0px; justify-content: center;">
+		<div class="column" style="margin-top: 10px; margin-left: 20px; margin-right: 20px;" *ngFor="let video of yourVideos ">
+			<div class="card" style="width: 18rem; border-radius: 20px; border-width: 3px; border-color:#15172b ;">
+				<img class="card-img-top" style="border-radius: 17px;" src="{{video.imageLink}}" alt="image">
+				<div class="card-body">
+				<h5 class="card-title">{{video.title}}</h5>
+				<p class="card-text">{{video.description}}</p>
+				<div class="row">
+					<a (click)="navigateToWatching(video.videoId)" class="btn btn-primary col" style="background-color: #15172b; border-color: #15172b; border-radius: 20px; border-width: 1px;">Watch !</a>
+					<a (click)="navigateToEditVideo(video.videoId)" class="btn btn-primary col" style="background-color:bisque; border-color: #15172b; color: black;  border-radius: 20px; border-width: 1px;">Edit</a>
+					<a (click)="deleteVideo(video.videoId)" class="btn btn-primary col" style="background-color:rgb(196, 51, 51); border-color: #15172b;  border-radius: 20px; border-width: 1px;">Delete</a>
+				</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	<ng-template #elseBlock> <p class="row" style="margin: 0px; justify-content: center;">Nothing to show</p> </ng-template>
 </div>
 
 <h3 style="text-align: center; margin: 20px;">
 	Bookmarked
 </h3>
-<div class="row" style="margin: 0px; justify-content: center;">
-	<div class="column" style="margin-top: 10px; margin-left: 20px; margin-right: 20px;" *ngFor="let video of bookMarked ">
-		<div class="card" style="width: 18rem; border-radius: 20px; border-width: 3px; border-color:#15172b ;">
-			<img class="card-img-top" style="border-radius: 17px;" src="{{video.imageLink}}" alt="image">
-			<div class="card-body">
-			<h5 class="card-title">{{video.title}}</h5>
-			<p class="card-text">{{video.description}}</p>
-			<a (click)="navigateToWatching(video.videoId)" class="btn btn-primary" style="background-color: #15172b; border-color: #15172b; border-radius: 20px; border-width: 1px;">Watch !</a>
+<div>
+	<div class="row" *ngIf=" bookMarked.length>0; else elseBlock" style="margin: 0px; justify-content: center;">
+		<div class="column" style="margin-top: 10px; margin-left: 20px; margin-right: 20px;" *ngFor="let video of bookMarked ">
+			<div class="card" style="width: 18rem; border-radius: 20px; border-width: 3px; border-color:#15172b ;">
+				<img class="card-img-top" style="border-radius: 17px;" src="{{video.imageLink}}" alt="image">
+				<div class="card-body">
+				<h5 class="card-title">{{video.title}}</h5>
+				<p class="card-text">{{video.description}}</p>
+				<a (click)="navigateToWatching(video.videoId)" class="btn btn-primary" style="background-color: #15172b; border-color: #15172b; border-radius: 20px; border-width: 1px;">Watch !</a>
+				</div>
 			</div>
 		</div>
 	</div>
+	<ng-template #elseBlock> <p class="row" style="margin: 0px; justify-content: center;">Nothing to show</p> </ng-template>
 </div>
+

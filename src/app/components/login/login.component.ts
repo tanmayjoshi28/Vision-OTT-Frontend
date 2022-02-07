@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     logInUser(){
         const isAuthenticated = this.userServices.authenticate(this.email,this.password);
         if(isAuthenticated){
+            this.userServices.getBookMarks();
             this.router.navigateByUrl('/')
         }
         else{
