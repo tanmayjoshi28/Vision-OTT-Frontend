@@ -11,9 +11,8 @@ export default [
         id:2,
         username:'Pranav',
         email:'b@b.com',
-        dob:'22-11-2009',
+        dob:'22-11-2010',
         bookmarks:[],
         password:'pass'
-    },
-
+    }
 ]
