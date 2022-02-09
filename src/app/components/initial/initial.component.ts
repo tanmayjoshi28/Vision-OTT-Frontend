@@ -37,6 +37,7 @@ export class InitialComponent implements OnInit {
 		this.route.navigateByUrl(`/watching/${videoId}`)
 	}
 	logout(){
+		this.userServices.currentUser.id = -1;
 		this.route.navigateByUrl('/login');
 	}
 	setSearchVariable(){
